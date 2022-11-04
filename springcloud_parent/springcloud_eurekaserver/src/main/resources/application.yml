@@ -1,0 +1,21 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: eureka-server
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    ### 实例是否在eureka服务器上注册自己的信息以供其他服务发现，默认为true
+    registerWithEureka: false
+    ### 此客户端是否获取eureka服务器注册表上的注册信息，默认为true
+    fetchRegistry: false
+    ### 注册到的注册中心地址
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    ### 测试时候关闭自我保护机制，保证不可用服务能及时剔除，生产环境建议开启
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 2000 #间隔2秒剔除一次
+
